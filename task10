@@ -1,0 +1,213 @@
+2)
+irreverenthydra@irreverenthydra-VirtualBox:~$ sudo apt install apt-transport-https ca-certificates curl software-properties-common
+.
+.
+.
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+OK
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+Репозиторий: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
+
+Добавление репозитория.
+
+Получено 78,6 kB за 2с (35,9 kB/s)
+
+Чтение списков пакетов… Готово
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ sudo apt update
+irreverenthydra@irreverenthydra-VirtualBox:~$ apt-cache policy docker-ce
+
+docker-ce:
+
+  Установлен: (отсутствует)
+
+  Кандидат:   5:20.10.21~3-0~ubuntu-focal
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ sudo apt install docker-ce
+irreverenthydra@irreverenthydra-VirtualBox:~$ sudo systemctl status docker
+
+● docker.service - Docker Application Container Engine
+
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+
+     Active: active (running) since Tue 2022-11-29 10:39:33 MSK; 4min 42s ago
+
+TriggeredBy: ● docker.socket
+
+       Docs: https://docs.docker.com
+
+   Main PID: 6003 (dockerd)
+
+      Tasks: 8
+
+     Memory: 21.9M
+
+        CPU: 428ms
+
+     CGroup: /system.slice/docker.service
+
+             └─6003 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+
+
+ноя 29 10:39:32 irreverenthydra-VirtualBox dockerd[6003]: time="2022-11-29T10:39:32.867725339+03:00" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+
+ноя 29 10:39:32 irreverenthydra-VirtualBox dockerd[6003]: time="2022-11-29T10:39:32.867745682+03:00" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///run/containerd/containerd.sock  <>
+
+ноя 29 10:39:32 irreverenthydra-VirtualBox dockerd[6003]: time="2022-11-29T10:39:32.867759676+03:00" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+
+ноя 29 10:39:32 irreverenthydra-VirtualBox dockerd[6003]: time="2022-11-29T10:39:32.928897633+03:00" level=info msg="Loading containers: start."
+
+ноя 29 10:39:33 irreverenthydra-VirtualBox dockerd[6003]: time="2022-11-29T10:39:33.179893089+03:00" level=info msg="Default bridge (docker0) is assigned with an IP address 172.17.0.0/16. Daemon option >
+
+ноя 29 10:39:33 irreverenthydra-VirtualBox dockerd[6003]: time="2022-11-29T10:39:33.324886416+03:00" level=info msg="Loading containers: done."
+
+ноя 29 10:39:33 irreverenthydra-VirtualBox dockerd[6003]: time="2022-11-29T10:39:33.379231112+03:00" level=info msg="Docker daemon" commit=3056208 graphdriver(s)=overlay2 version=20.10.21
+
+ноя 29 10:39:33 irreverenthydra-VirtualBox dockerd[6003]: time="2022-11-29T10:39:33.379795111+03:00" level=info msg="Daemon has completed initialization"
+
+ноя 29 10:39:33 irreverenthydra-VirtualBox systemd[1]: Started Docker Application Container Engine.
+
+ноя 29 10:39:33 irreverenthydra-VirtualBox dockerd[6003]: time="2022-11-29T10:39:33.434497142+03:00" level=info msg="API listen on /run/docker.sock"
+
+irreverenthydra@irreverenthydra-VirtualBox:/home/irreverenthydra$ su -
+
+Пароль: 
+
+root@irreverenthydra-VirtualBox:~# sudo usermod -aG docker irreverenthydra
+
+root@irreverenthydra-VirtualBox:~# exit
+
+выход
+
+username@irreverenthydra-VirtualBox:/home/irreverenthydra$ su irreverenthydra
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ id -nG
+
+irreverenthydra adm cdrom sudo dip plugdev lpadmin lxd sambashare docker developer
+-----------------------------------------------------------------------------------------------------------------------\
+3)
+irreverenthydra@irreverenthydra-VirtualBox:~$ docker search ubuntu
+
+NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+
+ubuntu                           Ubuntu is a Debian-based Linux operating sys…   15281     [OK]       
+
+websphere-liberty                WebSphere Liberty multi-architecture images …   290       [OK]       
+
+ubuntu-upstart                   DEPRECATED, as is Upstart (find other proces…   112       [OK]       
+
+neurodebian                      NeuroDebian provides neuroscience research s…   97        [OK]       
+
+ubuntu/nginx                     Nginx, a high-performance reverse proxy & we…   69                   
+
+open-liberty                     Open Liberty multi-architecture images based…   56        [OK]       
+
+ubuntu-debootstrap               DEPRECATED; use "ubuntu" instead                49        [OK]       
+
+ubuntu/apache2                   Apache, a secure & extensible open-source HT…   49                   
+
+ubuntu/squid                     Squid is a caching proxy for the Web. Long-t…   44                   
+
+ubuntu/mysql                     MySQL open source fast, stable, multi-thread…   38                   
+
+ubuntu/prometheus                Prometheus is a systems and service monitori…   33                   
+
+ubuntu/bind9                     BIND 9 is a very flexible, full-featured DNS…   32                   
+
+ubuntu/postgres                  PostgreSQL is an open source object-relation…   22                   
+
+ubuntu/redis                     Redis, an open source key-value store. Long-…   15                   
+
+ubuntu/kafka                     Apache Kafka, a distributed event streaming …   15                   
+
+ubuntu/prometheus-alertmanager   Alertmanager handles client alerts from Prom…   8                    
+
+ubuntu/grafana                   Grafana, a feature rich metrics dashboard & …   6                    
+
+ubuntu/memcached                 Memcached, in-memory keyvalue store for smal…   5                    
+
+ubuntu/zookeeper                 ZooKeeper maintains configuration informatio…   5                    
+
+ubuntu/dotnet-deps               Chiselled Ubuntu for self-contained .NET & A…   5                    
+
+ubuntu/dotnet-runtime            Chiselled Ubuntu runtime image for .NET apps…   5                    
+
+ubuntu/telegraf                  Telegraf collects, processes, aggregates & w…   4                    
+
+ubuntu/cortex                    Cortex provides storage for Prometheus. Long…   3                    
+
+ubuntu/dotnet-aspnet             Chiselled Ubuntu runtime image for ASP.NET a…   3                    
+
+ubuntu/cassandra                 Cassandra, an open source NoSQL distributed …   2                    
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ docker pull ubuntu
+
+Using default tag: latest
+
+latest: Pulling from library/ubuntu
+
+e96e057aae67: Pull complete 
+
+Digest: sha256:4b1d0c4a2d2aaf63b37111f34eb9fa89fa1bf53dd6e4ca954d47caebca4005c2
+
+Status: Downloaded newer image for ubuntu:latest
+
+docker.io/library/ubuntu:latest
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ docker images
+
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+
+ubuntu        latest    a8780b506fa4   3 weeks ago     77.8MB
+
+hello-world   latest    feb5d9fea6a5   14 months ago   13.3kB
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ docker run -it ubuntu
+
+root@9d531380c4ee:/# exit
+exit
+----------------------------------------------------------------------------------------------------------------------
+4)
+irreverenthydra@irreverenthydra-VirtualBox:~$ nano Dockerfile
+FROM ubuntu:latest
+MAINTAINER irreverenthydra
+RUN apt-get update
+RUN apt-get install nginx
+RUN apt-get install php-fpm
+EXPOSE 80
+CMD /user/sbin/nginx -g "daemon off:"
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ sudo docker build -t nginx-php-fpm .
+.
+.
+Successfully built 8f0c25a3f8e7
+
+Successfully tagged nginx-php-fpm:latest
+
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ sudo docker run -d --name nginx-php-fpm -p 80:80 nginx-php-fpm:latest
+
+8cc21c4744432560bcf120f7ec362a6f690bdf22071847670547d7402d9b266a
+
+irreverenthydra@irreverenthydra-VirtualBox:~$ sudo docker ps -a
+
+CONTAINER ID   IMAGE                  COMMAND                  CREATED          STATUS                        PORTS     NAMES
+
+8cc21c474443   nginx-php-fpm:latest   "/bin/sh -c '/user/s…"   19 seconds ago   Exited (127) 18 seconds ago             nginx-php-fpm
+
+
+
+
+
+
+
+
+
+
+
+
